@@ -6,17 +6,9 @@
         host: 0.0.0.0
         port: 5001
   rules:
-    - name: Debug All Events
-      condition: event.payload is defined
+    - name: Test AAP Job Execution
+      condition: true
       action:
-        debug:
-
-    - name: Test Proxmox Condition
-      condition: >
-        event.payload is defined and
-        event.payload.event_name is defined and
-        "Not running" in event.payload.event_name and
-        event.payload.operation_data is defined and
-        event.payload.operation_data == "Current value: stopped"
-      action:
-        debug:
+        run_job_template:
+          name: "Power On Proxmox VM"
+          organization: "Default"
