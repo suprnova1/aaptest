@@ -18,6 +18,7 @@
         "Not running" in event.payload.event_name and
         event.payload.operation_data is defined and
         event.payload.operation_data == "Current value: stopped" and
+        event.payload.event_tags is defined and
         event.payload.event_tags.qemu is defined and
         event.payload.event_tags.qemu[0] == "qemu/110"
       action:
