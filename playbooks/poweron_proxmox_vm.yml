@@ -1,0 +1,14 @@
+---
+- name: Power on Proxmox VM
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Power on VM in Proxmox
+      community.general.proxmox_kvm:
+        api_host: "192.168.50.240"
+        api_user: "root@pam"
+        api_password: "P@ssw0rd"
+        vmid: "{{ proxmox_vm }}"
+        node: "{{ proxmox_host }}"
+        state: started
+      delegate_to: localhost
