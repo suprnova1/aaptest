@@ -18,8 +18,10 @@
         event.payload.operation_data == "Current value: stopped" and
         event.payload.event_tags.qemu[0] == "qemu/110"
       action:
-        run_playbook:
-          name: poweron_proxmox_vm.yml
-          extra_vars:
-            proxmox_vm: "110"
-            proxmox_host: "{{ event.payload.event_tags.node[0] }}"
+        run_job_template:
+          name: "Power On Proxmox VM"
+          organization: "Default"
+          job_args:
+            extra_vars:
+              proxmox_vm: "110"
+              proxmox_host: "{{ event.payload.event_tags.node[0] }}"
