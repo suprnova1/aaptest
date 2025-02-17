@@ -11,14 +11,15 @@
       action:
         debug:
 
-    - name: Power On Proxmox VM
+    - name: Power On Proxmox VM 110
       condition: >
         event.payload.event_name is defined and 
         "Not running" in event.payload.event_name and
-        event.payload.operation_data == "Current value: stopped"
+        event.payload.operation_data == "Current value: stopped" and
+        event.payload.event_tags.qemu[0] == "qemu/110"
       action:
         run_playbook:
           name: poweron_proxmox_vm.yml
           extra_vars:
-            proxmox_vm: "{{ event.payload.event_tags.qemu[0].split('/')[1] }}"
+            proxmox_vm: "110"
             proxmox_host: "{{ event.payload.event_tags.node[0] }}"
