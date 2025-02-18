@@ -10,8 +10,8 @@
       condition: event.payload is defined
       action:
         run_job_template:
-          name: "Power On Proxmox VM"
-          organization: "Default"
+          name: Power On Proxmox VM
+          organization: Default
           job_args:
             verify_ssl: false
             extra_vars:
