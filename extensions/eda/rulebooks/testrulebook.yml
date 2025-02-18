@@ -7,8 +7,8 @@
         port: 5001
   rules:
     - name: Test AAP Job Execution
-      condition: true
+      condition: event.payload.message == "Hello"
       action:
         run_job_template:
-          name: Power On Proxmox VM
-          organization: Default
+          name: "Power On Proxmox VM"
+          organization: "Default"
