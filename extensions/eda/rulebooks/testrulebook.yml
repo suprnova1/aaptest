@@ -1,19 +1,12 @@
 ---
-- name: Zabbix Event Processing
+- name: Zabbix Test rulebook
   hosts: all
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 5001
   rules:
-    - name: Power On Proxmox VM
+    - name: debug
       condition: event.payload is defined
       action:
-        run_job_template:
-          name: Power On Proxmox VM
-          organization: Default
-          job_args:
-            verify_ssl: false
-            extra_vars:
-              proxmox_vm: "110"
-              proxmox_host: "{{ event.payload.event_tags.node[0] }}"
+        debug:
